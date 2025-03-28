@@ -1,0 +1,26 @@
+/* Moving gradient animation for text */
+.gradient-text {
+  background-image: linear-gradient(
+    to right, 
+    #e34b7e, /* darker pink */
+    #54aef8, /* darker blue */
+    #76cc79, /* darker green */
+    /* #f0cf6d, darker yellow */
+    #a34eb3, /* darker purple */
+    #e6638f  /* back to darker pink for seamless loop */
+  );
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent !important;
+  animation: gradientMove 8s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
