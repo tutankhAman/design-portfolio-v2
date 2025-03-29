@@ -1,5 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
   const nameRef = useRef(null);
@@ -231,6 +235,73 @@ function Home() {
           <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed mx-auto">
             I <span className="font-lato italic">design with intent</span> and <span className="font-mono font-thin">code</span> with efficiency—crafting sleek, intuitive experiences that are as smooth to use as they are to look at. No guesswork, no mess—just <span className="font-lato italic">clean design, seamless functionality</span>, and a developer's touch to bring it all to life.
           </p>
+        </div>
+      </section>
+      
+      {/* Scrolling Text Strap Section */}
+      <section className="bg-black py-4 overflow-hidden">
+        <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
+          if (el && !el.hasLocoScroll) {
+            el.hasLocoScroll = true;
+            const text = el.querySelector('.scroll-text');
+            const textWidth = text.offsetWidth;
+            
+            const clone = text.cloneNode(true);
+            el.appendChild(clone);
+            
+            gsap.set(clone, { x: textWidth });
+            
+            gsap.to([text, clone], {
+              x: `-=${textWidth}`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                scrub: 0.3,
+                start: "top bottom",
+                end: "bottom top",
+              }
+            });
+          }
+        }}>
+          <div className="scroll-text">
+            <h2 className="text-white font-playfair font-bold italic text-4xl md:text-5xl lg:text-6xl">
+              design that makes people give a damn • design that makes people give a damn • design that makes people give a damn • design that makes people give a damn • design that makes people give a damn •
+            </h2>
+          </div>
+        </div>
+      </section>
+      
+      {/* White Scrolling Text Strap for Code */}
+      <section className="bg-white py-4 overflow-hidden relative border-t border-b border-gray-800">
+        <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
+          if (el && !el.hasLocoScroll) {
+            el.hasLocoScroll = true;
+            const text = el.querySelector('.scroll-text');
+            const textWidth = text.offsetWidth;
+            
+            const clone = text.cloneNode(true);
+            el.appendChild(clone);
+            
+            gsap.set(text, { x: -textWidth });
+            gsap.set(clone, { x: 0 });
+            
+            gsap.to([text, clone], {
+              x: `+=${textWidth}`,
+              ease: "none",
+              scrollTrigger: {
+                trigger: el,
+                scrub: 0.3,
+                start: "top bottom",
+                end: "bottom top",
+              }
+            });
+          }
+        }}>
+          <div className="scroll-text">
+            <h2 className="text-black font-playfair font- italic  text-4xl md:text-5xl lg:text-6xl">
+              code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ;
+            </h2>
+          </div>
         </div>
       </section>
       
