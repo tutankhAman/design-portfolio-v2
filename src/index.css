@@ -13,3 +13,25 @@
     @apply font-lato text-gray-900;
   }
 }
+
+/* Text strap styling */
+.whitespace-nowrap {
+  white-space: nowrap;
+  display: inline-block;
+  width: max-content;
+}
+
+/* Ensure the container takes full width */
+.overflow-hidden {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Enhanced gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}

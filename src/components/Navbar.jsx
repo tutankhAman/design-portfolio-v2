@@ -54,7 +54,7 @@ function Navbar() {
 
   // Mobile menu component
   const MobileMenu = () => (
-    <div className={`absolute top-[70px] right-0 bg-white/90 backdrop-blur-lg rounded-lg shadow-lg p-4 transition-all duration-300 border border-gray-200 ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
+    <div className={`absolute top-[70px] right-0 bg-white/90 backdrop-blur-md rounded-lg shadow-lg p-4 transition-all duration-300 border border-gray-200 ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'}`}>
       <ul className="flex flex-col space-y-3 font-montserrat font-semibold text-sm">
         <li>
           <Link 
@@ -116,9 +116,9 @@ function Navbar() {
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center w-full mt-4 transition-all duration-500 ease-in-out">
       <nav className={`flex justify-between items-center px-4 h-[60px] transition-all duration-500 ease-in-out relative
         ${viewport !== 'desktop'
-          ? 'w-[90vw] bg-black/10 backdrop-blur-lg rounded-full shadow-sm border border-gray-200' 
+          ? 'w-[90vw] bg-black/10 backdrop-blur-md rounded-full shadow-sm border border-gray-200' 
           : scrolled 
-            ? 'w-[50vw] bg-black/10 backdrop-blur-lg rounded-full shadow-sm border border-gray-200' 
+            ? 'w-[50vw] bg-black/10 backdrop-blur-md rounded-full shadow-sm border border-gray-200' 
             : 'w-[80vw] bg-transparent'
         }`}>
         {/* Left section - Name and title */}
@@ -129,14 +129,14 @@ function Navbar() {
         
         {/* Middle section - Navigation pills - Only visible on non-mobile viewports */}
         {viewport !== 'mobile' && (
-          <div className="bg-black/10 backdrop-blur-lg rounded-full shadow-sm inline-flex items-center border border-gray-300 p-0.5">
+          <div className="bg-black/10 backdrop-blur-md rounded-full shadow-sm inline-flex items-center border border-gray-300 p-0.5">
             <ul className="flex font-montserrat font-semibold text-xs items-center">
               <li className="flex items-center">
                 <Link 
                   to="/" 
                   className={`inline-block px-4 py-2 rounded-full transition-colors duration-300 ${
                     isActive('/') 
-                      ? 'bg-white text-gray-900 backdrop-blur-sm' 
+                      ? 'bg-white text-gray-900 backdrop-blur-md' 
                       : 'text-gray-800 hover:bg-white/70'
                   }`}
                 >

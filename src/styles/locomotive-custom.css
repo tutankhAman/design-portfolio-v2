@@ -1,0 +1,98 @@
+/* Custom styles for Locomotive Scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  user-select: none;
+}
+
+.locomotive-scroll {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+[data-scroll-container] {
+  min-height: 100vh;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+[data-scroll-section] {
+  position: relative;
+  width: 100%;
+  will-change: transform;
+}
+
+[data-scroll] {
+  will-change: transform;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: grabbing;
+}
+
+.has-scroll-scrolling .c-scrollbar {
+  opacity: 1;
+}
+
+.has-scroll-hover .c-scrollbar {
+  opacity: 1;
+}
+
+/* Custom fade-in animation for elements */
+[data-scroll].is-inview {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s cubic-bezier(0.215, 0.61, 0.355, 1), 
+              transform 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+[data-scroll]:not(.is-inview) {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Remove initial opacity/transform for mobile */
+@media (max-width: 768px) {
+  [data-scroll]:not(.is-inview) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Special gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
