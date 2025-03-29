@@ -239,7 +239,11 @@ function Home() {
       </section>
       
       {/* Scrolling Text Strap Section */}
-      <section className="bg-black py-4 overflow-hidden">
+      <section className="bg-black py-6 overflow-hidden relative transform -rotate-[0.8deg]" 
+        style={{ 
+          zIndex: 10,
+          boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
+        }}>
         <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
           if (el && !el.hasLocoScroll) {
             el.hasLocoScroll = true;
@@ -256,23 +260,42 @@ function Home() {
               ease: "none",
               scrollTrigger: {
                 trigger: el,
-                scrub: 0.3,
+                scrub: 0.8,
                 start: "top bottom",
-                end: "bottom top",
+                end: "+=" + (textWidth * 1.5),
               }
             });
           }
         }}>
           <div className="scroll-text">
             <h2 className="text-white font-playfair font-bold italic text-4xl md:text-5xl lg:text-6xl">
-              design that makes people give a damn • design that makes people give a damn • design that makes people give a damn • design that makes people give a damn • design that makes people give a damn •
+              <span className="pastel-gradient">design</span> that makes people give a damn • 
+              <span className="pastel-gradient">design</span> that makes people give a damn • 
+              <span className="pastel-gradient">design</span> that makes people give a damn • 
+              <span className="pastel-gradient">design</span> that makes people give a damn • 
+              <span className="pastel-gradient">design</span> that makes people give a damn •
             </h2>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 opacity-70"></div>
+        <style jsx>{`
+          .pastel-gradient {
+            background: linear-gradient(45deg, #FF3366, #854DFF, #5B7FFF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            padding: 0 4px;
+            text-shadow: 0 0 25px rgba(255, 51, 102, 0.15);
+          }
+        `}</style>
       </section>
       
       {/* White Scrolling Text Strap for Code */}
-      <section className="bg-white py-4 overflow-hidden relative border-t border-b border-gray-800">
+      <section className="bg-white py-6 overflow-hidden relative transform rotate-[1.2deg] -mt-3 border-t border-b border-gray-200" 
+        style={{ 
+          zIndex: 5,
+          boxShadow: '0 -4px 15px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.05)'
+        }}>
         <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
           if (el && !el.hasLocoScroll) {
             el.hasLocoScroll = true;
@@ -282,27 +305,42 @@ function Home() {
             const clone = text.cloneNode(true);
             el.appendChild(clone);
             
-            gsap.set(text, { x: -textWidth });
-            gsap.set(clone, { x: 0 });
+            // Adjust the initial position to be closer to viewport
+            gsap.set(text, { x: -textWidth * 0.5 });
+            gsap.set(clone, { x: textWidth * 0.2 });
             
             gsap.to([text, clone], {
               x: `+=${textWidth}`,
               ease: "none",
               scrollTrigger: {
                 trigger: el,
-                scrub: 0.3,
+                scrub: 0.8,
                 start: "top bottom",
-                end: "bottom top",
+                end: "+=" + (textWidth * 1.5),
               }
             });
           }
         }}>
           <div className="scroll-text">
-            <h2 className="text-black font-playfair font- italic  text-4xl md:text-5xl lg:text-6xl">
-              code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ; code that brings it to life ;
+            <h2 className="text-gray-800 font-mono text-3xl md:text-4xl lg:text-5xl">
+              <span className="terminal-code">code</span> that brings it to life ; 
+              <span className="terminal-code">code</span> that brings it to life ; 
+              <span className="terminal-code">code</span> that brings it to life ; 
+              <span className="terminal-code">code</span> that brings it to life ;
             </h2>
           </div>
         </div>
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
+        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
+        <style jsx>{`
+          .terminal-code {
+            background: #1a1a1a;
+            color: #4AFF91;
+            padding: 0.1em 0.4em;
+            border-radius: 4px;
+            text-shadow: 0 0 8px rgba(74, 255, 145, 0.4);
+          }
+        `}</style>
       </section>
       
       {/* Footer space */}
