@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Skills from '../components/Skills';
 import ProjectShowcase from '../components/ProjectShowcase';
+import Testimonials from '../components/Testimonials';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +18,11 @@ function Home() {
   // Canvas background effect
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+    
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
 
@@ -97,6 +102,7 @@ function Home() {
     }
 
     function handleResize() {
+      if (!canvas) return;
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
       const newCols = Math.floor(width / config.gridSize) + 2;
@@ -324,7 +330,7 @@ function Home() {
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 opacity-70"></div>
-        <style jsx>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           .pastel-gradient {
             background: linear-gradient(45deg, #FF3366, #854DFF, #5B7FFF);
             -webkit-background-clip: text;
@@ -333,7 +339,7 @@ function Home() {
             padding: 0 4px;
             text-shadow: 0 0 25px rgba(255, 51, 102, 0.15);
           }
-        `}</style>
+        `}} />
       </section>
       
       {/* White Scrolling Text Strap for Code */}
@@ -354,7 +360,7 @@ function Home() {
         </div>
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
         <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
-        <style jsx>{`
+        <style dangerouslySetInnerHTML={{ __html: `
           .terminal-code {
             background: #1a1a1a;
             color: #4AFF91;
@@ -362,7 +368,7 @@ function Home() {
             border-radius: 4px;
             text-shadow: 0 0 8px rgba(74, 255, 145, 0.4);
           }
-        `}</style>
+        `}} />
       </section>
       
       {/* Third section - Skills */}
@@ -370,6 +376,9 @@ function Home() {
       
       {/* Fourth section - Projects Showcase */}
       <ProjectShowcase />
+      
+      {/* Fifth section - Testimonials */}
+      <Testimonials />
       
       {/* Footer space */}
       <div className="bg-white h-[20vh]"></div>
