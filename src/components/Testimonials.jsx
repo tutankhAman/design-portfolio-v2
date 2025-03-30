@@ -10,58 +10,58 @@ gsap.registerPlugin(ScrollTrigger);
 const testimonialData = [
   {
     id: 1,
-    text: "Aman took our dated website and transformed it into something that actually reflects our brand. The design is fresh, and the code is clean. Best investment we've made this year.",
-    name: "Sarah Johnson",
-    position: "Marketing Director, Tellus Inc.",
-    initials: "SJ",
+    text: "Aman took the vision I had in mind and turned it into reality. He was always aware of the deadlines and delivered on time.",
+    name: "Koustubh Pande",
+    position: "Full Stack Developer, Delivo",
+    initials: "KP",
     gradientFrom: "from-purple-400",
     gradientTo: "to-pink-500"
   },
   {
     id: 2,
-    text: "The unique blend of design sensibility and technical expertise is what sets Aman apart. He doesn't just make things look good—he makes them work beautifully too.",
-    name: "Michael Chen",
-    position: "Founder, Nexus Digital",
-    initials: "MC",
+    text: "Aman spent significant amount of time understanding our needs and goals for the project. The result was a stunning design that exceeded our expectations.",
+    name: "Masoom Raza",
+    position: "Founder, Amayra Ethnic Collections",
+    initials: "MR",
     gradientFrom: "from-blue-400",
     gradientTo: "to-teal-500"
   },
   {
     id: 3,
-    text: "I've worked with many designers, but few understand how to balance aesthetics with functionality like Aman does. Our app's engagement metrics doubled after the redesign.",
-    name: "Jessica Rivera",
-    position: "Product Manager, Altura Apps",
-    initials: "JR",
+    text: "The end product is good and Aman has done a very good job. Just like a professional. It's a privilege to work with him. The designing level is outstanding and attention to detail is seamless",
+    name: "MD Shaheem",
+    position: "Owner, Taxify Global",
+    initials: "MS",
     gradientFrom: "from-yellow-400",
     gradientTo: "to-orange-500"
   },
-  {
-    id: 4,
-    text: "Aman bridges the gap between design and development perfectly. No more back-and-forth between teams—he handles both sides with expertise and precision.",
-    name: "David Wilson",
-    position: "CTO, Elemental Tech",
-    initials: "DW",
-    gradientFrom: "from-green-400",
-    gradientTo: "to-blue-500"
-  },
-  {
-    id: 5,
-    text: "Working with Aman was refreshingly straightforward. He listens, delivers on time, and creates interfaces that genuinely enhance the user experience.",
-    name: "Sophia Lee",
-    position: "UI/UX Lead, Prism Studio",
-    initials: "SL",
-    gradientFrom: "from-pink-400",
-    gradientTo: "to-purple-500"
-  },
-  {
-    id: 6,
-    text: "We needed someone who could translate our vision into reality without losing its essence. Aman not only preserved it but enhanced it in ways we hadn't even considered.",
-    name: "Robert Martin",
-    position: "Creative Director, Visionary Media",
-    initials: "RM",
-    gradientFrom: "from-red-400",
-    gradientTo: "to-yellow-500"
-  }
+//   {
+//     id: 4,
+//     text: "Aman bridges the gap between design and development perfectly. No more back-and-forth between teams—he handles both sides with expertise and precision.",
+//     name: "David Wilson",
+//     position: "CTO, Elemental Tech",
+//     initials: "DW",
+//     gradientFrom: "from-green-400",
+//     gradientTo: "to-blue-500"
+//   },
+//   {
+//     id: 5,
+//     text: "Working with Aman was refreshingly straightforward. He listens, delivers on time, and creates interfaces that genuinely enhance the user experience.",
+//     name: "Sophia Lee",
+//     position: "UI/UX Lead, Prism Studio",
+//     initials: "SL",
+//     gradientFrom: "from-pink-400",
+//     gradientTo: "to-purple-500"
+//   },
+//   {
+//     id: 6,
+//     text: "We needed someone who could translate our vision into reality without losing its essence. Aman not only preserved it but enhanced it in ways we hadn't even considered.",
+//     name: "Robert Martin",
+//     position: "Creative Director, Visionary Media",
+//     initials: "RM",
+//     gradientFrom: "from-red-400",
+//     gradientTo: "to-yellow-500"
+//   }
 ];
 
 function Testimonials() {

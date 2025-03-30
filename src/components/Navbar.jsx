@@ -67,7 +67,7 @@ function Navbar() {
             Home
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link 
             to="/about" 
             className={`block px-4 py-2 rounded-full transition-colors duration-300 ${
@@ -92,7 +92,7 @@ function Navbar() {
           >
             Projects
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link 
             to="/contact" 
@@ -164,7 +164,7 @@ function Navbar() {
                     Home
                   </Link>
                 </li>
-                <li className="flex items-center">
+                {/* <li className="flex items-center">
                   <Link 
                     to="/about" 
                     className={`inline-block px-4 py-2 rounded-full transition-colors duration-300 ${
@@ -187,7 +187,7 @@ function Navbar() {
                   >
                     Projects
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
