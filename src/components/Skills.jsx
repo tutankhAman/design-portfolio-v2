@@ -6,10 +6,12 @@ import {
   SiNextdotjs, SiTypescript, SiJavascript, SiPython, 
   SiCplusplus, SiHtml5, SiCss3, SiFigma, SiGit, SiGithub 
 } from 'react-icons/si';
+import { useTheme } from '../contexts/ThemeContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Skills = () => {
+  const { darkMode } = useTheme();
   const sectionRef = useRef(null);
   const circleRef = useRef(null);
   const headingRef = useRef(null);
@@ -114,13 +116,13 @@ const Skills = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative h-screen w-full bg-gray-50 flex items-center justify-center overflow-hidden"
+      className={`relative h-screen w-full ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} flex items-center justify-center overflow-hidden transition-colors duration-300`}
     >
       {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-100 opacity-70"></div>
+      <div className={`absolute inset-0 ${darkMode ? 'bg-gradient-to-b from-gray-900 to-gray-950' : 'bg-gradient-to-b from-gray-50 to-gray-100'} opacity-70`}></div>
       <div className="absolute w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute -left-[10%] top-[20%] w-[40%] h-[40%] rounded-full bg-gradient-to-r from-blue-100 to-purple-100 blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute right-[5%] bottom-[10%] w-[35%] h-[35%] rounded-full bg-gradient-to-r from-orange-100 to-red-100 blur-3xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className={`absolute -left-[10%] top-[20%] w-[40%] h-[40%] rounded-full ${darkMode ? 'bg-gradient-to-r from-blue-900/20 to-purple-900/20' : 'bg-gradient-to-r from-blue-100 to-purple-100'} blur-3xl opacity-30 animate-pulse`}></div>
+        <div className={`absolute right-[5%] bottom-[10%] w-[35%] h-[35%] rounded-full ${darkMode ? 'bg-gradient-to-r from-orange-900/20 to-red-900/20' : 'bg-gradient-to-r from-orange-100 to-red-100'} blur-3xl opacity-20 animate-pulse`} style={{ animationDelay: '1s' }}></div>
       </div>
       
       <div 
@@ -132,11 +134,11 @@ const Skills = () => {
           ref={headingRef}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 text-center w-[60%]"
         >
-          <h2 className="font-playfair font-bold text-3xl md:text-4xl lg:text-5xl text-gray-800 mb-2">
+          <h2 className={`font-playfair font-bold text-3xl md:text-4xl lg:text-5xl ${darkMode ? 'text-gray-100' : 'text-gray-800'} mb-2`}>
             my <span className="italic">expertise</span>
           </h2>
           {!activeSkill && (
-            <p className="text-gray-500 text-sm md:text-base mt-2 opacity-80">Scroll to explore my skills</p>
+            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-500'} text-sm md:text-base mt-2 opacity-80`}>Scroll to explore my skills</p>
           )}
         </div>
         
@@ -159,10 +161,11 @@ const Skills = () => {
             >
               <div className="relative group">
                 <div 
-                  className={`w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-white shadow-lg transition-all duration-500 ${activeSkill?.name === skill.name ? 'ring-2 ring-offset-2 scale-125' : 'hover:shadow-xl hover:scale-105'}`}
+                  className={`w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full ${darkMode ? 'bg-gray-800' : 'bg-white'} shadow-lg transition-all duration-500 ${activeSkill?.name === skill.name ? 'ring-2 ring-offset-2 scale-125' : 'hover:shadow-xl hover:scale-105'}`}
                   style={{ 
                     boxShadow: activeSkill?.name === skill.name ? `0 0 20px ${skill.color}50` : '',
-                    ringColor: skill.color 
+                    ringColor: skill.color,
+                    ringOffsetColor: darkMode ? '#111827' : '#ffffff'
                   }}
                 >
                   <skill.icon 
@@ -193,7 +196,9 @@ const Skills = () => {
                       top: '50%',
                       transform: 'translateY(-50%)',
                       color: skill.color,
-                      textShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 5px rgba(255,255,255,0.9)',
+                      textShadow: darkMode 
+                        ? '0 0 10px rgba(0,0,0,0.8), 0 0 5px rgba(0,0,0,0.9)' 
+                        : '0 0 10px rgba(255,255,255,0.8), 0 0 5px rgba(255,255,255,0.9)',
                       fontSize: 'clamp(0.7rem, 2vw, 1rem)',
                       fontWeight: 600,
                     }}
@@ -208,8 +213,8 @@ const Skills = () => {
       </div>
       
       {/* Background circle decoration */}
-      <div className="absolute w-[75vmin] h-[75vmin] rounded-full border-2 border-gray-200 opacity-50"></div>
-      <div className="absolute w-[85vmin] h-[85vmin] rounded-full border border-gray-200 opacity-30"></div>
+      <div className={`absolute w-[75vmin] h-[75vmin] rounded-full border-2 ${darkMode ? 'border-gray-700' : 'border-gray-200'} opacity-50`}></div>
+      <div className={`absolute w-[85vmin] h-[85vmin] rounded-full border ${darkMode ? 'border-gray-700' : 'border-gray-200'} opacity-30`}></div>
       
       <style jsx>{`
         .gradient-text {

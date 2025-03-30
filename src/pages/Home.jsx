@@ -4,11 +4,13 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import Skills from '../components/Skills';
 import ProjectShowcase from '../components/ProjectShowcase';
 import Testimonials from '../components/Testimonials';
+import { useTheme } from '../contexts/ThemeContext';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 function Home() {
+  const { darkMode } = useTheme();
   const nameRef = useRef(null);
   const sectionRef = useRef(null);
   const canvasRef = useRef(null);
@@ -29,7 +31,7 @@ function Home() {
     const config = {
       gridSize: 20,
       lineWidth: 0.4,
-      lineColor: 'rgba(0, 0, 0, 0.08)',
+      lineColor: darkMode ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.08)',
       waveSpeed: 0.004,
       waveHeight: 5,
       noiseScale: 0.005
@@ -179,7 +181,7 @@ function Home() {
       gsap.killTweensOf([nameRef.current, sectionRef.current, subtitleRef.current, glowEffectRef.current]);
       tl.kill();
     };
-  }, []);
+  }, [darkMode]);
 
   // Setup ScrollTrigger for text straps with locomotive-like effect
   useEffect(() => {
@@ -248,11 +250,11 @@ function Home() {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative transition-colors duration-300">
       {/* First section with name and background */}
       <section 
         ref={sectionRef} 
-        className="relative h-screen flex flex-col justify-center items-center overflow-hidden"
+        className={`relative h-screen flex flex-col justify-center items-center overflow-hidden ${darkMode ? 'bg-gray-900' : 'bg-white'}`}
       >
         <canvas
           ref={canvasRef}
@@ -266,7 +268,9 @@ function Home() {
         >
           <div className="w-[90vw] h-[35vh] rounded-full" 
             style={{ 
-              background: 'radial-gradient(circle, rgba(0,0,0,0.15) 0%, rgba(128,128,128,0.1) 40%, rgba(0,0,0,0) 70%)',
+              background: darkMode 
+                ? 'radial-gradient(circle, rgba(255,255,255,0.07) 0%, rgba(200,200,200,0.05) 40%, rgba(255,255,255,0) 70%)'
+                : 'radial-gradient(circle, rgba(0,0,0,0.15) 0%, rgba(128,128,128,0.1) 40%, rgba(0,0,0,0) 70%)',
               transform: 'translateY(25%)',
               filter: 'blur(50px)',
               opacity: 0.7
@@ -276,7 +280,9 @@ function Home() {
 
         <div className="absolute bottom-0 left-0 w-full h-[45vh] opacity-20 pointer-events-none" 
           style={{
-            background: 'linear-gradient(to top, rgba(200,200,200,0.2), rgba(255,255,255,0))',
+            background: darkMode
+              ? 'linear-gradient(to top, rgba(50,50,50,0.2), rgba(50,50,50,0))'
+              : 'linear-gradient(to top, rgba(200,200,200,0.2), rgba(255,255,255,0))',
             zIndex: 1
           }}>
         </div>
@@ -285,7 +291,7 @@ function Home() {
           ref={subtitleRef}
           className="absolute top-1/4 left-0 right-0 text-center overflow-hidden"
         >
-          <p className="font-montserrat text-sm md:text-base tracking-widest uppercase text-gray-400 px-4">
+          <p className={`font-montserrat text-sm md:text-base tracking-widest uppercase ${darkMode ? 'text-gray-400' : 'text-gray-400'} px-4`}>
             Designer & Developer
           </p>
         </div>
@@ -293,7 +299,7 @@ function Home() {
         <div className="absolute bottom-4 left-0 right-0 text-center overflow-hidden">
           <h1
             ref={nameRef}
-            className="font-raleway font-medium text-[25vw] leading-none tracking-tighter text-gray-800 relative z-10"
+            className={`font-raleway font-medium text-[25vw] leading-none tracking-tighter ${darkMode ? 'text-gray-200' : 'text-gray-800'} relative z-10`}
           >
             aman
           </h1>
@@ -301,12 +307,12 @@ function Home() {
       </section>
 
       {/* Second section - introduction text */}
-      <section className="bg-gray-50 min-h-screen flex items-center justify-center py-32">
+      <section className={`${darkMode ? 'bg-gray-900' : 'bg-gray-50'} min-h-screen flex items-center justify-center py-32 transition-colors duration-300`}>
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-          <h2 className="font-montserrat font-bold text-4xl md:text-5xl lg:text-7xl mb-12 text-gray-900 leading-tight">
+          <h2 className={`font-montserrat font-bold text-4xl md:text-5xl lg:text-7xl mb-12 ${darkMode ? 'text-gray-100' : 'text-gray-900'} leading-tight`}>
             Hey I'm <span className="font-playfair font-bold italic">Aman</span> - I make <span className="font-playfair font-bold italic gradient-text">pixels</span> meet <span className="font-mono font-thin">code</span>
           </h2>
-          <p className="text-xl md:text-2xl lg:text-3xl text-gray-700 leading-relaxed mx-auto">
+          <p className={`text-xl md:text-2xl lg:text-3xl ${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed mx-auto`}>
             I <span className="font-lato italic">design with intent</span> and <span className="font-mono font-thin">code</span> with efficiency—crafting sleek, intuitive experiences that are as smooth to use as they are to look at. No guesswork, no mess—just <span className="font-lato italic">clean design, seamless functionality</span>, and a developer's touch to bring it all to life.
           </p>
         </div>
@@ -343,14 +349,16 @@ function Home() {
       </section>
       
       {/* White Scrolling Text Strap for Code */}
-      <section className="bg-white py-6 overflow-hidden relative transform rotate-[1.2deg] -mt-3 border-t border-b border-gray-200" 
+      <section className={`${darkMode ? 'bg-gray-800' : 'bg-white'} py-6 overflow-hidden relative transform rotate-[1.2deg] -mt-3 border-t border-b ${darkMode ? 'border-gray-700' : 'border-gray-200'}`} 
         style={{ 
           zIndex: 5,
-          boxShadow: '0 -4px 15px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.05)'
+          boxShadow: darkMode 
+            ? '0 -4px 15px rgba(0,0,0,0.2), 0 4px 15px rgba(0,0,0,0.2)'
+            : '0 -4px 15px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.05)'
         }}>
         <div className="code-strap-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }}>
           <div className="scroll-text">
-            <h2 className="text-gray-800 font-mono text-3xl md:text-4xl lg:text-5xl">
+            <h2 className={`${darkMode ? 'text-gray-200' : 'text-gray-800'} font-mono text-3xl md:text-4xl lg:text-5xl`}>
               <span className="terminal-code">code</span> that brings it to life ; 
               <span className="terminal-code">code</span> that brings it to life ; 
               <span className="terminal-code">code</span> that brings it to life ; 
@@ -358,11 +366,11 @@ function Home() {
             </h2>
           </div>
         </div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
-        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"></div>
+        <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r ${darkMode ? 'from-gray-700 via-gray-600 to-gray-700' : 'from-gray-200 via-gray-300 to-gray-200'}`}></div>
+        <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${darkMode ? 'from-gray-700 via-gray-600 to-gray-700' : 'from-gray-200 via-gray-300 to-gray-200'}`}></div>
         <style dangerouslySetInnerHTML={{ __html: `
           .terminal-code {
-            background: #1a1a1a;
+            background: ${darkMode ? '#0c0c0c' : '#1a1a1a'};
             color: #4AFF91;
             padding: 0.1em 0.4em;
             border-radius: 4px;
@@ -381,7 +389,16 @@ function Home() {
       <Testimonials />
       
       {/* Footer space */}
-      <div className="bg-white h-[20vh]"></div>
+      <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} h-[20vh] transition-colors duration-300`}></div>
+      
+      <style jsx>{`
+        .gradient-text {
+          background: linear-gradient(45deg, #FF3366, #854DFF, #5B7FFF);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+        }
+      `}</style>
     </div>
   );
 }

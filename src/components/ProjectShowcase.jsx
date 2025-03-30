@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { AuroraCard } from './ui/aurora-card';
+import { useTheme } from '../contexts/ThemeContext';
 
 // Import project images
 import project1 from '/projects/prject-1.png';
@@ -13,6 +14,7 @@ import project5 from '/projects/prject-5.png';
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectShowcase = () => {
+  const { darkMode } = useTheme();
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const projectsRef = useRef([]);
@@ -109,14 +111,14 @@ const ProjectShowcase = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-50">
+    <section ref={sectionRef} className={`py-24 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} transition-colors duration-300`}>
       <div className="container mx-auto px-4">
         {/* Heading with added subheading */}
         <div ref={headingRef} className="text-center mb-16">
-          <h2 className="font-montserrat font-bold text-4xl md:text-5xl lg:text-6xl text-gray-900 mb-3">
+          <h2 className={`font-montserrat font-bold text-4xl md:text-5xl lg:text-6xl ${darkMode ? 'text-gray-100' : 'text-gray-900'} mb-3`}>
             my <span className="font-playfair font-bold italic gradient-text">creations</span>
           </h2>
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
+          <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg md:text-xl max-w-2xl mx-auto`}>
             A collection of carefully crafted digital experiences
           </p>
         </div>

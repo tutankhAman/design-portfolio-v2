@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import BorderBeam from "@/components/ui/border-beam";
+import { useTheme } from '../contexts/ThemeContext';
 
 // Register ScrollTrigger
 gsap.registerPlugin(ScrollTrigger);
@@ -64,6 +65,7 @@ const testimonialData = [
 ];
 
 function Testimonials() {
+  const { darkMode } = useTheme();
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const testimonialRef = useRef(null);
@@ -122,11 +124,17 @@ function Testimonials() {
       .filter(trigger => trigger.vars.id?.includes('testimonial'))
       .forEach(trigger => trigger.kill());
     
-    // Simple fade-in for section
+    // Update background color based on theme
     gsap.fromTo(sectionRef.current,
-      { backgroundColor: "rgba(245, 247, 250, 0.5)" },
       { 
-        backgroundColor: "rgba(245, 247, 250, 1)",
+        backgroundColor: darkMode 
+          ? "rgba(17, 24, 39, 0.5)" // dark gray
+          : "rgba(245, 247, 250, 0.5)" // light gray
+      },
+      { 
+        backgroundColor: darkMode 
+          ? "rgba(17, 24, 39, 1)" 
+          : "rgba(245, 247, 250, 1)",
         duration: 1,
         scrollTrigger: {
           id: "testimonial-section",
@@ -181,22 +189,22 @@ function Testimonials() {
         .filter(trigger => trigger.vars.id?.includes('testimonial'))
         .forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [darkMode]);
 
   return (
     <section 
       ref={sectionRef}
-      className="py-24 bg-gray-50 relative"
+      className={`py-24 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'} relative transition-colors duration-300`}
     >
       <div className="container mx-auto px-4 md:px-8">
         <h2 
           ref={headingRef}
-          className="font-montserrat font-bold text-4xl md:text-5xl mb-4 text-center"
+          className={`font-montserrat font-bold text-4xl md:text-5xl mb-4 text-center ${darkMode ? 'text-gray-100' : 'text-gray-900'}`}
         >
           What <span className="font-playfair font-bold italic">People</span> Say
         </h2>
         
-        <p className="text-center text-gray-600 mb-16 max-w-2xl mx-auto text-lg">
+        <p className={`text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-16 max-w-2xl mx-auto text-lg`}>
           Don't just take my word for it—here's what clients have to say about working together.
         </p>
         
@@ -204,9 +212,11 @@ function Testimonials() {
           {/* Current testimonial with BorderBeam and soft gradient */}
           <div
             ref={testimonialRef}
-            className="bg-white p-10 rounded-lg shadow-md text-center mx-auto relative overflow-hidden"
+            className={`${darkMode ? 'bg-gray-800' : 'bg-white'} p-10 rounded-lg shadow-md text-center mx-auto relative overflow-hidden`}
             style={{
-              background: `radial-gradient(circle at top right, ${getGradientColors(currentIndex).light}, white 70%)`,
+              background: darkMode
+                ? `radial-gradient(circle at top right, ${getGradientColors(currentIndex).darkLight}, #1f2937 70%)`
+                : `radial-gradient(circle at top right, ${getGradientColors(currentIndex).light}, white 70%)`,
             }}
           >
             {/* Add BorderBeam component */}
@@ -226,10 +236,10 @@ function Testimonials() {
               }}
             ></div>
             
-            <div className="text-7xl text-gray-200 font-serif leading-none mb-8 mx-auto w-max relative z-10">
+            <div className={`text-7xl ${darkMode ? 'text-gray-700' : 'text-gray-200'} font-serif leading-none mb-8 mx-auto w-max relative z-10`}>
               "
             </div>
-            <p className="text-gray-700 text-xl mb-10 font-light leading-relaxed relative z-10">
+            <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} text-xl mb-10 font-light leading-relaxed relative z-10`}>
               {testimonialData[currentIndex].text}
             </p>
             <div className="flex items-center justify-center relative z-10">
@@ -237,8 +247,8 @@ function Testimonials() {
                 {testimonialData[currentIndex].initials}
               </div>
               <div className="text-left">
-                <h4 className="font-semibold text-lg">{testimonialData[currentIndex].name}</h4>
-                <p className="text-gray-500">{testimonialData[currentIndex].position}</p>
+                <h4 className={`font-semibold text-lg ${darkMode ? 'text-gray-200' : 'text-gray-900'}`}>{testimonialData[currentIndex].name}</h4>
+                <p className={`${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>{testimonialData[currentIndex].position}</p>
               </div>
             </div>
           </div>
@@ -247,10 +257,10 @@ function Testimonials() {
           <div className="flex justify-between mt-8 max-w-xs mx-auto">
             <button 
               onClick={handlePrev}
-              className="h-12 w-12 rounded-full bg-white shadow-md flex items-center justify-center hover:shadow-lg transition-shadow"
+              className={`h-12 w-12 rounded-full ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'} shadow-md flex items-center justify-center hover:shadow-lg transition-shadow`}
               aria-label="Previous testimonial"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -275,8 +285,8 @@ function Testimonials() {
                   }}
                   className={`h-2 rounded-full transition-all ${
                     index === currentIndex 
-                      ? 'w-6 bg-gray-800' 
-                      : 'w-2 bg-gray-300 hover:bg-gray-400'
+                      ? `w-6 ${darkMode ? 'bg-gray-200' : 'bg-gray-800'}` 
+                      : `w-2 ${darkMode ? 'bg-gray-600 hover:bg-gray-500' : 'bg-gray-300 hover:bg-gray-400'}`
                   }`}
                   aria-label={`Go to testimonial ${index + 1}`}
                 />
@@ -285,10 +295,10 @@ function Testimonials() {
             
             <button 
               onClick={handleNext}
-              className="h-12 w-12 rounded-full bg-white shadow-md flex items-center justify-center hover:shadow-lg transition-shadow"
+              className={`h-12 w-12 rounded-full ${darkMode ? 'bg-gray-800 hover:bg-gray-700' : 'bg-white hover:bg-gray-50'} shadow-md flex items-center justify-center hover:shadow-lg transition-shadow`}
               aria-label="Next testimonial"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -302,15 +312,15 @@ function Testimonials() {
   );
 }
 
-// Helper function to get gradient colors for current testimonial
+// Updated helper function to get gradient colors for current testimonial
 function getGradientColors(index) {
   const gradients = {
-    0: { from: '#a855f7', to: '#ec4899', light: 'rgba(236, 72, 153, 0.05)' }, // purple to pink
-    1: { from: '#3b82f6', to: '#14b8a6', light: 'rgba(20, 184, 166, 0.05)' }, // blue to teal
-    2: { from: '#facc15', to: '#f97316', light: 'rgba(249, 115, 22, 0.05)' }, // yellow to orange 
-    3: { from: '#22c55e', to: '#3b82f6', light: 'rgba(59, 130, 246, 0.05)' }, // green to blue
-    4: { from: '#ec4899', to: '#a855f7', light: 'rgba(168, 85, 247, 0.05)' }, // pink to purple
-    5: { from: '#ef4444', to: '#facc15', light: 'rgba(250, 204, 21, 0.05)' }, // red to yellow
+    0: { from: '#a855f7', to: '#ec4899', light: 'rgba(236, 72, 153, 0.05)', darkLight: 'rgba(236, 72, 153, 0.1)' }, // purple to pink
+    1: { from: '#3b82f6', to: '#14b8a6', light: 'rgba(20, 184, 166, 0.05)', darkLight: 'rgba(20, 184, 166, 0.1)' }, // blue to teal
+    2: { from: '#facc15', to: '#f97316', light: 'rgba(249, 115, 22, 0.05)', darkLight: 'rgba(249, 115, 22, 0.1)' }, // yellow to orange 
+    3: { from: '#22c55e', to: '#3b82f6', light: 'rgba(59, 130, 246, 0.05)', darkLight: 'rgba(59, 130, 246, 0.1)' }, // green to blue
+    4: { from: '#ec4899', to: '#a855f7', light: 'rgba(168, 85, 247, 0.05)', darkLight: 'rgba(168, 85, 247, 0.1)' }, // pink to purple
+    5: { from: '#ef4444', to: '#facc15', light: 'rgba(250, 204, 21, 0.05)', darkLight: 'rgba(250, 204, 21, 0.1)' }, // red to yellow
   };
   
   return gradients[index];
