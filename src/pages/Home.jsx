@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import Skills from '../components/Skills';
+import ProjectShowcase from '../components/ProjectShowcase';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -364,8 +365,11 @@ function Home() {
         `}</style>
       </section>
       
-      {/* Third section - Skills - After the text straps */}
+      {/* Third section - Skills */}
       <Skills />
+      
+      {/* Fourth section - Projects Showcase */}
+      <ProjectShowcase />
       
       {/* Footer space */}
       <div className="bg-white h-[20vh]"></div>
