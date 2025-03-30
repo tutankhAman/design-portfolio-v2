@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import Skills from '../components/Skills';
 
 // Register the ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -11,14 +12,14 @@ function Home() {
   const canvasRef = useRef(null);
   const subtitleRef = useRef(null);
   const glowEffectRef = useRef(null);
-  
+
   // Canvas background effect
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
-    
+
     const config = {
       gridSize: 20,
       lineWidth: 0.4,
@@ -173,6 +174,72 @@ function Home() {
     };
   }, []);
 
+  // Setup ScrollTrigger for text straps with locomotive-like effect
+  useEffect(() => {
+    // Clear any existing ScrollTrigger instances first
+    ScrollTrigger.getAll()
+      .filter(trigger => trigger.vars.id?.includes('textStrap'))
+      .forEach(trigger => trigger.kill());
+    
+    // Design text strap animation
+    const designStrapEl = document.querySelector('.design-strap-container');
+    if (designStrapEl) {
+      const designText = designStrapEl.querySelector('.scroll-text');
+      const designTextWidth = designText.offsetWidth;
+      
+      const designClone = designText.cloneNode(true);
+      designStrapEl.appendChild(designClone);
+      
+      gsap.set(designClone, { x: designTextWidth });
+      
+      gsap.to([designText, designClone], {
+        x: `-=${designTextWidth}`,
+        ease: "none",
+        scrollTrigger: {
+          id: "textStrap-design",
+          trigger: designStrapEl,
+          start: "top bottom",
+          end: "+=" + (designTextWidth * 2),
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+    
+    // Code text strap animation
+    const codeStrapEl = document.querySelector('.code-strap-container');
+    if (codeStrapEl) {
+      const codeText = codeStrapEl.querySelector('.scroll-text');
+      const codeTextWidth = codeText.offsetWidth;
+      
+      const codeClone = codeText.cloneNode(true);
+      codeStrapEl.appendChild(codeClone);
+      
+      gsap.set(codeText, { x: -codeTextWidth * 0.3 });
+      gsap.set(codeClone, { x: codeTextWidth * 0.4 });
+      
+      gsap.to([codeText, codeClone], {
+        x: `+=${codeTextWidth * 0.7}`,
+        ease: "none",
+        scrollTrigger: {
+          id: "textStrap-code",
+          trigger: codeStrapEl,
+          start: "top bottom",
+          end: "+=" + (codeTextWidth * 2),
+          scrub: 0.5,
+          invalidateOnRefresh: true,
+        }
+      });
+    }
+
+    return () => {
+      // Clean up ScrollTrigger instances when component unmounts
+      ScrollTrigger.getAll()
+        .filter(trigger => trigger.vars.id?.includes('textStrap'))
+        .forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
     <div className="relative">
       {/* First section with name and background */}
@@ -244,29 +311,7 @@ function Home() {
           zIndex: 10,
           boxShadow: '0 8px 20px rgba(0,0,0,0.1)'
         }}>
-        <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
-          if (el && !el.hasLocoScroll) {
-            el.hasLocoScroll = true;
-            const text = el.querySelector('.scroll-text');
-            const textWidth = text.offsetWidth;
-            
-            const clone = text.cloneNode(true);
-            el.appendChild(clone);
-            
-            gsap.set(clone, { x: textWidth });
-            
-            gsap.to([text, clone], {
-              x: `-=${textWidth}`,
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                scrub: 0.8,
-                start: "top bottom",
-                end: "+=" + (textWidth * 1.5),
-              }
-            });
-          }
-        }}>
+        <div className="design-strap-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }}>
           <div className="scroll-text">
             <h2 className="text-white font-playfair font-bold italic text-4xl md:text-5xl lg:text-6xl">
               <span className="pastel-gradient">design</span> that makes people give a damn • 
@@ -296,31 +341,7 @@ function Home() {
           zIndex: 5,
           boxShadow: '0 -4px 15px rgba(0,0,0,0.07), 0 4px 15px rgba(0,0,0,0.05)'
         }}>
-        <div className="scroll-text-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }} ref={el => {
-          if (el && !el.hasLocoScroll) {
-            el.hasLocoScroll = true;
-            const text = el.querySelector('.scroll-text');
-            const textWidth = text.offsetWidth;
-            
-            const clone = text.cloneNode(true);
-            el.appendChild(clone);
-            
-            // Adjust the initial position to be closer to viewport
-            gsap.set(text, { x: -textWidth * 0.5 });
-            gsap.set(clone, { x: textWidth * 0.2 });
-            
-            gsap.to([text, clone], {
-              x: `+=${textWidth}`,
-              ease: "none",
-              scrollTrigger: {
-                trigger: el,
-                scrub: 0.8,
-                start: "top bottom",
-                end: "+=" + (textWidth * 1.5),
-              }
-            });
-          }
-        }}>
+        <div className="code-strap-container" style={{ display: 'inline-flex', whiteSpace: 'nowrap' }}>
           <div className="scroll-text">
             <h2 className="text-gray-800 font-mono text-3xl md:text-4xl lg:text-5xl">
               <span className="terminal-code">code</span> that brings it to life ; 
@@ -342,6 +363,9 @@ function Home() {
           }
         `}</style>
       </section>
+      
+      {/* Third section - Skills - After the text straps */}
+      <Skills />
       
       {/* Footer space */}
       <div className="bg-white h-[20vh]"></div>
