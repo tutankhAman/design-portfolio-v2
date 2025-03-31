@@ -208,7 +208,7 @@ function About() {
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <h1 
             ref={headerRef}
-            className="font-playfair font-bold text-5xl md:text-7xl lg:text-8xl"
+            className="font-playfair font-bold text-5xl md:text-7xl lg:text-8xl text-gray-900 dark:text-gray-100"
           >
             About <span className="font-playfair font-bold italic gradient-text">Me</span>
           </h1>
@@ -290,7 +290,7 @@ function About() {
           </div>
           
           <div ref={bioSectionRef}>
-            <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-6">Hi, I'm <span className="font-playfair font-bold italic gradient-text">Aman</span></h2>
+            <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-6 text-gray-900 dark:text-gray-100">Hi, I'm <span className="font-playfair font-bold italic gradient-text">Aman</span></h2>
             <p className={`text-lg md:text-xl leading-relaxed mb-5 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
               Designer by eye, developer by logic—basically, the <span className="font-medium relative px-1">
                 <span className="relative z-10">Swiss Army knife</span>
@@ -313,7 +313,7 @@ function About() {
         className={`py-24 ${darkMode ? 'bg-gray-800' : 'bg-white'}`}
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-16 text-center text-gray-900 dark:text-gray-100">
             My <span className="font-playfair font-bold italic gradient-text">Skills</span>
           </h2>
           
@@ -521,14 +521,14 @@ function About() {
         className={`py-24 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
       >
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-16 text-center">
+          <h2 className="text-3xl md:text-4xl font-montserrat font-bold mb-16 text-center text-gray-900 dark:text-gray-100">
             Education & <span className="font-playfair font-bold italic gradient-text">Experience</span>
           </h2>
           
           <div className="max-w-4xl mx-auto space-y-10">
             <div className={`timeline-item relative pl-10 pb-10 ${darkMode ? 'border-l-2 border-gray-700' : 'border-l-2 border-gray-300'}`}>
               <div className={`absolute left-[-8px] top-0 w-4 h-4 rounded-full ${darkMode ? 'bg-pink-500' : 'bg-purple-500'}`}></div>
-              <h3 className="font-montserrat font-bold text-2xl mb-2">Freelance Design & Development</h3>
+              <h3 className="font-montserrat font-bold text-2xl mb-2 text-gray-900 dark:text-gray-100">Freelance Design & Development</h3>
               <p className={`mb-3 font-mono text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>2024 - Present</p>
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Working on client projects while pursuing my degree. Creating responsive websites, UI/UX designs, and brand identities for small businesses and startups.
@@ -537,7 +537,7 @@ function About() {
             
             <div className={`timeline-item relative pl-10 pb-10 ${darkMode ? 'border-l-2 border-gray-700' : 'border-l-2 border-gray-300'}`}>
               <div className={`absolute left-[-8px] top-0 w-4 h-4 rounded-full ${darkMode ? 'bg-purple-500' : 'bg-pink-500'}`}></div>
-              <h3 className="font-montserrat font-bold text-2xl mb-2">Design Lead, Lead Developer - University Project</h3>
+              <h3 className="font-montserrat font-bold text-2xl mb-2 text-gray-900 dark:text-gray-100">Design Lead, Lead Developer - University Project</h3>
               <p className={`mb-3 font-mono text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>2024</p>
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Led a team of 5 students to design and develop a Food Delvery Platform (Delivo). Responsible for UI/UX design system, user research, and frontend implementation.
@@ -546,7 +546,7 @@ function About() {
             
             <div className={`timeline-item relative pl-10 ${darkMode ? 'border-l-2 border-gray-700' : 'border-l-2 border-gray-300'}`}>
               <div className={`absolute left-[-8px] top-0 w-4 h-4 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-400'}`}></div>
-              <h3 className="font-montserrat font-bold text-2xl mb-2">Bachelor of Design & Computer Science</h3>
+              <h3 className="font-montserrat font-bold text-2xl mb-2 text-gray-900 dark:text-gray-100">Bachelor of Design & Computer Science</h3>
               <p className={`mb-3 font-mono text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Vellore Institute of Technology, 2023 - Present</p>
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Pursuing Computer Science and Engineering.
@@ -563,6 +563,7 @@ function About() {
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
+          filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
         }
         
         .motto-text {

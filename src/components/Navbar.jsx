@@ -220,8 +220,10 @@ function Navbar() {
         }`}>
         {/* Left section - Name and title */}
         <div className="flex flex-col justify-center">
-          <h1 className="font-lato font-bold text-md text-gray-900 dark:text-gray-100">Aman Aziz</h1>
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-montserrat font-light">Developer / UI-UX Designer</p>
+          <Link to="/" className="group">
+            <h1 className="font-lato font-bold text-md text-gray-900 dark:text-gray-100 transition-all duration-300 group-hover:text-pink-500 dark:group-hover:text-pink-400">Aman Aziz</h1>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-montserrat font-light transition-all duration-300">Developer / UI-UX Designer</p>
+          </Link>
         </div>
         
         {/* Middle section - Navigation pills - Centered with absolute positioning */}
