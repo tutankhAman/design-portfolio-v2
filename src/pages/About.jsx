@@ -546,7 +546,7 @@ function About() {
             
             <div className={`timeline-item relative pl-10 ${darkMode ? 'border-l-2 border-gray-700' : 'border-l-2 border-gray-300'}`}>
               <div className={`absolute left-[-8px] top-0 w-4 h-4 rounded-full ${darkMode ? 'bg-blue-500' : 'bg-blue-400'}`}></div>
-              <h3 className="font-montserrat font-bold text-2xl mb-2 text-gray-900 dark:text-gray-100">Bachelor of Design & Computer Science</h3>
+              <h3 className="font-montserrat font-bold text-2xl mb-2 text-gray-900 dark:text-gray-100">Bachelor of Computer Science and Engineering</h3>
               <p className={`mb-3 font-mono text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Vellore Institute of Technology, 2023 - Present</p>
               <p className={`text-lg leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
                 Pursuing Computer Science and Engineering.
