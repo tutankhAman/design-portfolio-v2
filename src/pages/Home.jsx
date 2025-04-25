@@ -391,6 +391,26 @@ function Home() {
       {/* Footer space */}
       <div className={`${darkMode ? 'bg-gray-900' : 'bg-white'} h-[20vh] transition-colors duration-300`}></div>
       
+      {/* Developer Portfolio Link Section */}
+      <section className={`${darkMode ? 'bg-gray-900' : 'bg-white'} py-24 transition-colors duration-300`}>
+        <div className="container mx-auto px-4 text-center">
+          <h2 className={`font-montserrat font-bold text-3xl md:text-4xl lg:text-5xl ${darkMode ? 'text-gray-100' : 'text-gray-900'} mb-6`}>
+            Done with my <span className="font-playfair font-bold italic gradient-text">designer</span> side?
+          </h2>
+          <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} text-lg md:text-xl mb-8 max-w-2xl mx-auto`}>
+            Explore my developer portfolio to see the code behind the designs
+          </p>
+          <a 
+            href="https://tutankhaman.vercel.app" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-montserrat font-semibold text-lg hover:opacity-90 transition-opacity duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-transform duration-300"
+          >
+            View Developer Portfolio
+          </a>
+        </div>
+      </section>
+      
       <style jsx>{`
         .gradient-text {
           background: linear-gradient(45deg, #FF3366, #854DFF, #5B7FFF);
