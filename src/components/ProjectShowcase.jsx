@@ -10,6 +10,8 @@ import project2 from '/projects/prject-2.png';
 import project3 from '/projects/prject-3.png';
 import project4 from '/projects/prject-4.png';
 import project5 from '/projects/prject-5.png';
+import project6 from '/projects/prject-6.png';
+import project7 from '/projects/prject-7.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,28 +25,33 @@ const ProjectShowcase = () => {
   const projects = [
     {
       id: 1,
-      title: "AbstractVidya Blogs",
-      image: project1,
+      title: "VerQ - AI Powered Interview Buddy",
+      image: project6,
+      url: "https://verqai.vercel.app"
     },
     {
       id: 2,
       title: "Amayra Ethnic Collections",
       image: project2,
+      url: "https://aecethnic.vercel.app"
     },
     {
       id: 3,
-      title: "The Drinks App",
-      image: project3,
+      title: "AbstractVidya Blogs",
+      image: project1,
+      url: "https://chantinglifemantras.wixsite.com/abstractvidya"
     },
     {
       id: 4,
       title: "The Delivo Project",
       image: project4,
+      url: "https://github.com/tutankhaman/delivio"
     },
     {
       id: 5,
-      title: "The pdhAI Project",
-      image: project5,
+      title: "Arkaiv - Daily AI Digest",
+      image: project7,
+      url: "https://arkaiv.vercel.app"
     }
   ];
 
@@ -130,28 +137,30 @@ const ProjectShowcase = () => {
             ref={el => projectsRef.current[0] = el}
             className="col-span-12 md:col-span-8 row-span-2"
           >
-            <AuroraCard 
-              containerClassName="h-full"
-              glowClassName="from-purple-500/60 via-pink-400/60 to-blue-500/60"
-            >
-              <div className="relative h-[32rem] w-full">
-                <div className="absolute inset-0 w-full h-full">
-                  <img 
-                    src={projects[0].image} 
-                    alt={projects[0].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
-                </div>
+            <a href={projects[0].url} target="_blank" rel="noopener noreferrer" className="block h-full">
+              <AuroraCard 
+                containerClassName="h-full"
+                glowClassName="from-purple-500/60 via-pink-400/60 to-blue-500/60"
+              >
+                <div className="relative h-[32rem] w-full">
+                  <div className="absolute inset-0 w-full h-full">
+                    <img 
+                      src={projects[0].image} 
+                      alt={projects[0].title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
+                  </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="font-montserrat font-bold text-2xl md:text-3xl text-white mb-3">
-                    {projects[0].title}
-                  </h3>
-                  <div className="h-0.5 w-16 bg-white/80 group-hover:w-24 transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-full p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-montserrat font-bold text-2xl md:text-3xl text-white mb-3">
+                      {projects[0].title}
+                    </h3>
+                    <div className="h-0.5 w-16 bg-white/80 group-hover:w-24 transition-all duration-300"></div>
+                  </div>
                 </div>
-              </div>
-            </AuroraCard>
+              </AuroraCard>
+            </a>
           </div>
 
           {/* Second project - spans 4 columns on larger screens */}
@@ -159,28 +168,30 @@ const ProjectShowcase = () => {
             ref={el => projectsRef.current[1] = el}
             className="col-span-12 md:col-span-4"
           >
-            <AuroraCard 
-              containerClassName="h-full"
-              glowClassName="from-blue-500/60 via-cyan-400/60 to-emerald-500/60"
-            >
-              <div className="relative h-[15rem] w-full">
-                <div className="absolute inset-0 w-full h-full">
-                  <img 
-                    src={projects[1].image} 
-                    alt={projects[1].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
-                </div>
+            <a href={projects[1].url} target="_blank" rel="noopener noreferrer" className="block h-full">
+              <AuroraCard 
+                containerClassName="h-full"
+                glowClassName="from-blue-500/60 via-cyan-400/60 to-emerald-500/60"
+              >
+                <div className="relative h-[15rem] w-full">
+                  <div className="absolute inset-0 w-full h-full">
+                    <img 
+                      src={projects[1].image} 
+                      alt={projects[1].title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
+                  </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
-                    {projects[1].title}
-                  </h3>
-                  <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-full p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
+                      {projects[1].title}
+                    </h3>
+                    <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                  </div>
                 </div>
-              </div>
-            </AuroraCard>
+              </AuroraCard>
+            </a>
           </div>
 
           {/* Third project - spans 4 columns on larger screens */}
@@ -188,28 +199,30 @@ const ProjectShowcase = () => {
             ref={el => projectsRef.current[2] = el}
             className="col-span-12 md:col-span-4"
           >
-            <AuroraCard 
-              containerClassName="h-full"
-              glowClassName="from-emerald-500/60 via-teal-400/60 to-cyan-500/60"
-            >
-              <div className="relative h-[15rem] w-full">
-                <div className="absolute inset-0 w-full h-full">
-                  <img 
-                    src={projects[2].image} 
-                    alt={projects[2].title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
-                </div>
+            <a href={projects[2].url} target="_blank" rel="noopener noreferrer" className="block h-full">
+              <AuroraCard 
+                containerClassName="h-full"
+                glowClassName="from-emerald-500/60 via-teal-400/60 to-cyan-500/60"
+              >
+                <div className="relative h-[15rem] w-full">
+                  <div className="absolute inset-0 w-full h-full">
+                    <img 
+                      src={projects[2].image} 
+                      alt={projects[2].title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
+                  </div>
 
-                <div className="absolute bottom-0 left-0 w-full p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                  <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
-                    {projects[2].title}
-                  </h3>
-                  <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-full p-5 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                    <h3 className="font-montserrat font-semibold text-xl text-white mb-2">
+                      {projects[2].title}
+                    </h3>
+                    <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                  </div>
                 </div>
-              </div>
-            </AuroraCard>
+              </AuroraCard>
+            </a>
           </div>
 
           {/* Fourth & Fifth projects - each spans 6 columns on larger screens */}
@@ -219,31 +232,33 @@ const ProjectShowcase = () => {
               ref={el => projectsRef.current[index + 3] = el}
               className="col-span-12 md:col-span-6"
             >
-              <AuroraCard 
-                containerClassName="h-full"
-                glowClassName={index === 0 
-                  ? "from-amber-500/60 via-orange-400/60 to-pink-500/60" 
-                  : "from-indigo-500/60 via-purple-400/60 to-pink-500/60"
-                }
-              >
-                <div className="relative h-[18rem] w-full">
-                  <div className="absolute inset-0 w-full h-full">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
-                  </div>
+              <a href={project.url} target="_blank" rel="noopener noreferrer" className="block h-full">
+                <AuroraCard 
+                  containerClassName="h-full"
+                  glowClassName={index === 0 
+                    ? "from-amber-500/60 via-orange-400/60 to-pink-500/60" 
+                    : "from-indigo-500/60 via-purple-400/60 to-pink-500/60"
+                  }
+                >
+                  <div className="relative h-[18rem] w-full">
+                    <div className="absolute inset-0 w-full h-full">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300"></div>
+                    </div>
 
-                  <div className="absolute bottom-0 left-0 w-full p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="font-montserrat font-semibold text-xl md:text-2xl text-white mb-2">
-                      {project.title}
-                    </h3>
-                    <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                    <div className="absolute bottom-0 left-0 w-full p-6 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                      <h3 className="font-montserrat font-semibold text-xl md:text-2xl text-white mb-2">
+                        {project.title}
+                      </h3>
+                      <div className="h-0.5 w-12 bg-white/80 group-hover:w-16 transition-all duration-300"></div>
+                    </div>
                   </div>
-                </div>
-              </AuroraCard>
+                </AuroraCard>
+              </a>
             </div>
           ))}
         </div>
